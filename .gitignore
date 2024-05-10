@@ -1,0 +1,81 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary, build outputs
+*.test
+*.out
+
+# Output of the go coverage tool
+*.cover
+
+# Output of the go profiler
+*.prof
+*.pprof
+
+# Output of the go code analysis tool
+*.lint
+*.vet
+
+# Output of the go build tool
+bin/
+build/
+out/
+
+# Output of the go mod vendor tool
+vendor/
+
+# Output of the go module cache
+/pkg
+
+# Output of the go module download cache
+/pkg/mod
+
+# Directories for Go tools
+**/go-workspace/
+**/go-work/
+**/go/
+
+# GoLand project files
+.idea/
+
+# Node.js dependency directories
+node_modules/
+
+# IDE project files
+*.iml
+*.iws
+*.ipr
+
+# macOS system files
+.DS_Store
+
+# Visual Studio Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage reports
+coverage/
+coverage.out
+
+# Generated files
+*.gen.go
+
+# Binary artifacts
+*.o
+*.a
+
+# Backup files
+*.bak
+*.swp
+
+# Docker files
+.docker/
