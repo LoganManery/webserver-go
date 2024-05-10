@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"encoding/json"
 	
-	"example.com/server/types"
 	"example.com/server/users"
 	"example.com/server/database"
+	"example.com/server/types"
 )
 
 type AuthHandler struct {
@@ -51,12 +51,7 @@ func (h *AuthHandler) Signin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = h.db.Query("INSERT INTO users (username, password) VALUES (?, ?)", creds.Username, creds.Password)
-	if err != nil {
-		h.logger.Error("Failed to insert new user")
-		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
-		return
-	}
+	users.RegisterUser(h.db, creds.Username, creds.Password)
 
 	h.logger.Info("User signed up successfully")
 	w.WriteHeader(http.StatusOK)

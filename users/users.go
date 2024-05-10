@@ -18,7 +18,6 @@ import (
 type User struct {
 	Username string
 	Password string
-	Email string
 }
 
 type Credentials struct {
@@ -35,12 +34,12 @@ type Response struct {
 	
 }
 
-func RegisterUser(db *database.Database, username, password, email string) error {
+func RegisterUser(db *database.Database, username, password string) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return err
 	}
-	_, err = db.Exec("INSERT INTO users (username, password_hash, email) VALUES (?, ?, ?)", username, hashedPassword, email)
+	_, err = db.Exec("INSERT INTO users (username, password_hash, email) VALUES (?, ?, ?)", username, hashedPassword)
 	return err
 }
 
@@ -73,7 +72,7 @@ func GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 	users := []User{}
 	for rows.Next() {
 		var user User
-		if err := rows.Scan(&user.Username, &user.Email); err != nil {
+		if err := rows.Scan(&user.Username); err != nil {
 			http.Error(w, "Row scan error", http.StatusInternalServerError)
 			return
 		}
